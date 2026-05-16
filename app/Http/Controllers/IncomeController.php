@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use Illuminate\Support\Facades\DB;
 use App\Models\Income;
 use Illuminate\Http\Request;
 
@@ -32,7 +33,29 @@ class IncomeController extends Controller
      */
     public function store(Request $request)
     {
-        //
+    $validated = $request->validate([
+        'income' => 'required|max:255',
+        'from' => 'required|max:255',
+        'nominal' => 'required|numeric',
+        'tanggal_income' => 'required|date',
+    ], [
+        'income.required' => 'Tabel harus di isi',
+        'income.max' => 'Income tidak boleh lebih dari :max character',
+        'from.required' => 'Tabel harus di isi',
+        'from.max' => 'From tidak boleh lebih dari :max character',
+        'nominal.required' => 'Nominal harus di isi',
+        'nominal.numeric' => 'Nominal wajib angka',
+        'tanggal_income.required' => 'Tanggal harus di isi',
+
+    ]);
+
+        Income::create([
+        'income' => $request->income,
+        'from' => $request->from,
+        'nominal' => $request->nominal,
+        'tanggal_income' => $request->tanggal_income,
+    ]);
+        return to_route('income.index')->withSuccess('Data berhasil ditambahkan');
     }
 
     /**
