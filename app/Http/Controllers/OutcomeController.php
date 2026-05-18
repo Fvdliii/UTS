@@ -38,7 +38,16 @@ class OutcomeController extends Controller
         'from' => 'required',
         'nominal' => 'required|numeric',
         'tanggal_outcome' => 'required',
-    ]);
+    ], [
+        'outcome.required' => 'Tabel harus di isi',
+        'outcome.max' => 'outcome tidak boleh lebih dari :max character',
+        'from.required' => 'Tabel harus di isi',
+        'from.max' => 'From tidak boleh lebih dari :max character',
+        'nominal.required' => 'Nominal harus di isi',
+        'nominal.numeric' => 'Nominal wajib angka',
+        'tanggal_outcome.required' => 'Tanggal harus di isi',
+        'income_id.required' => 'Harus Memilih Tabungan',
+    ]);    
 
     Outcome::create([
         'income_id' => $request->income_id,
@@ -66,7 +75,12 @@ class OutcomeController extends Controller
      */
     public function edit(Outcome $outcome)
     {
-        //
+        return view('outcome.edit', [
+        'title' => 'Edit Outcome',
+        'outcome' => $outcome,
+        'incomes' =>Income::all()
+        ]);
+
     }
 
     /**
@@ -74,7 +88,34 @@ class OutcomeController extends Controller
      */
     public function update(Request $request, Outcome $outcome)
     {
-        //
+        $request->validate([
+        'income_id' => 'required',
+        'outcome' => 'required',
+        'from' => 'required',
+        'nominal' => 'required|numeric',
+        'tanggal_outcome' => 'required',
+    ], [
+        'outcome.required' => 'Tabel harus di isi',
+        'outcome.max' => 'outcome tidak boleh lebih dari :max character',
+        'from.required' => 'Tabel harus di isi',
+        'from.max' => 'From tidak boleh lebih dari :max character',
+        'nominal.required' => 'Nominal harus di isi',
+        'nominal.numeric' => 'Nominal wajib angka',
+        'tanggal_outcome.required' => 'Tanggal harus di isi',
+        'income_id.required' => 'Harus Memilih Tabungan',
+    ]);    
+
+    $outcome->update([
+        'income_id' => $request->income_id,
+        'outcome' => $request->outcome,
+        'from' => $request->from,
+        'nominal' => $request->nominal,
+        'tanggal_outcome' => $request->tanggal_outcome,
+        'description' => $request->description,
+    ]);
+
+    return to_route('outcome.index')
+        ->withSuccess('Data outcome berhasil di ubah');
     }
 
     /**
