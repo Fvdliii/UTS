@@ -113,6 +113,8 @@ class IncomeController extends Controller
      */
     public function destroy(Income $income)
     {
-        //
+        $income->delete($income);
+
+    return to_route('income.index')->withSuccess('Data berhasil Di hapus');
     }
 }

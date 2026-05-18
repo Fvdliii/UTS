@@ -19,7 +19,18 @@
                 Rp {{ number_format($income->nominal, 0, ',', '.') }} --
                 {{ $income->tanggal_income }}
 
-                <a class="btn btn-warning mb-3 btn-sm" href="{{ route('income.edit', $income) }}" role="button">Edit</a>
+                <a class="btn btn-warning btn-sm" href="{{ route('income.edit', $income) }}" role="button">Edit</a>
+
+                <form action="{{ route('income.destroy', $income) }}" method="POST" class="d-inline">
+                    @method('DELETE')
+                    @csrf
+
+                    <button type="submit" class="btn btn-danger btn-sm"
+                        onclick="return confirm('Apakah anda yakin ingin menghapus data anda?')">Delete</button>
+                </form>
+
+
+
             </li>
         @endforeach
     </ul>
