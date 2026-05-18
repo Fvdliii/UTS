@@ -6,16 +6,17 @@
         @csrf
 
         <div class="mb-3">
-            <label for="income" class="form-label">Uang yang masuk</label>
-            <input type="string" class="form-control @error('income') is-invalid @enderror" id="income" name="income">
-            @error('income')
+
+            <label for="from" class="form-label">Uangnya Dari Mana</label>
+            <input type="string" class="form-control @error('from') is-invalid @enderror" id="from" name="from">
+            @error('from')
                 <div class="invalid-feedback">{{ $message }}</div>
             @enderror
 
-            <label for="from" class="form-label">Uangnya Dari Mana</label>
-            <input type="string" class="form-control @error('from') is-invalid @enderror" id="from"
-                name="from">
-            @error('from')
+            <label for="income" class="form-label">Uang yang masuk</label>
+            <input type="string" class="form-control @error('income') is-invalid @enderror" id="income"
+                name="income">
+            @error('income')
                 <div class="invalid-feedback">{{ $message }}</div>
             @enderror
 

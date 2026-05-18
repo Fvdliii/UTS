@@ -24,16 +24,34 @@ class OutcomeController extends Controller
      */
     public function create()
     {
-        //
+        return view('outcome.create', ['title' => 'Creating Outcome', 'incomes' =>Income::all()]);
     }
 
     /**
      * Store a newly created resource in storage.
      */
     public function store(Request $request)
-    {
-        //
-    }
+{
+    $request->validate([
+        'income_id' => 'required',
+        'outcome' => 'required',
+        'from' => 'required',
+        'nominal' => 'required|numeric',
+        'tanggal_outcome' => 'required',
+    ]);
+
+    Outcome::create([
+        'income_id' => $request->income_id,
+        'outcome' => $request->outcome,
+        'from' => $request->from,
+        'nominal' => $request->nominal,
+        'tanggal_outcome' => $request->tanggal_outcome,
+        'description' => $request->description,
+    ]);
+
+    return to_route('outcome.index')
+        ->withSuccess('Data outcome berhasil ditambahkan');
+}
 
     /**
      * Display the specified resource.
