@@ -15,7 +15,7 @@ class IncomeController extends Controller
     {
         return view('income.index', [
             'title' => 'Recorded Income',
-            'incomes' => Income::all(),
+            'incomes' => Income::latest('tanggal_income')->get(),
             ]);
     }
 
