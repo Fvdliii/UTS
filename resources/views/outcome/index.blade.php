@@ -18,7 +18,7 @@
                 {{ $outcome->from }} --
                 Rp {{ number_format($outcome->nominal, 0, ',', '.') }} --
                 {{ $outcome->tanggal_outcome }} --
-                {{ $outcome->income->income }}
+                {{ $outcome->income->from }}
 
                 <a class="btn btn-warning btn-sm" href="{{ route('outcome.edit', $outcome) }}" role="button">Edit</a>
 

@@ -123,6 +123,8 @@ class OutcomeController extends Controller
      */
     public function destroy(Outcome $outcome)
     {
-        //
+        $outcome->delete($outcome);
+
+    return to_route('outcome.index')->withSuccess('Data berhasil Di hapus');
     }
 }

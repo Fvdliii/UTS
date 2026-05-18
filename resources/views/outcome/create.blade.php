@@ -41,7 +41,7 @@
 
                 @foreach ($incomes as $income)
                     <option value="{{ $income->id }}">
-                        {{ $income->income }} -
+                        {{ $income->from }} -
                         Rp {{ number_format($income->nominal, 0, ',', '.') }}
                     </option>
                 @endforeach

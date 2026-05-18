@@ -14,8 +14,8 @@
         @foreach ($incomes as $income)
             <li class="list-group-item">
                 {{ $loop->iteration }}.
-                {{ $income->income }} --
                 {{ $income->from }} --
+                {{ $income->income }} --
                 Rp {{ number_format($income->nominal, 0, ',', '.') }} --
                 {{ $income->tanggal_income }}
 
