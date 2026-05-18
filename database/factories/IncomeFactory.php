@@ -17,6 +17,11 @@ class IncomeFactory extends Factory
      */
     public function definition(): array
     {
-        
+        return [
+        'income' => 'Mingguan',
+        'from' => 'Orang Tua',
+        'nominal' => 500000,
+        'tanggal_income' => now(),
+    ];
     }
 }

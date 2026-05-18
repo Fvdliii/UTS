@@ -13,4 +13,9 @@ class Income extends Model
 {
     /** @use HasFactory<\Database\Factories\IncomeFactory> */
     use HasFactory;
+
+    public function outcomes()
+    {
+        return $this->hasMany(Outcome::class);
+    }
 }

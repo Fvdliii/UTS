@@ -15,12 +15,12 @@ class OutcomeSeeder extends Seeder
     public function run(): void
     {
         DB::table('outcomes')->insert([
+            'income_id' => 1,
             'outcome' => 'Cash',
             'from' => 'Makan',    
             'nominal' => 50000,
             'tanggal_outcome' => '2026-05-15',
             'description' => 'Makan siang',
-            'income_id' => 1,
         ]);
     }
 }

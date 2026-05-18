@@ -15,7 +15,7 @@ class OutcomeController extends Controller
     {
         return view('outcome.index', [
             'title' => 'Recorded outcome',
-            'outcomes' => Outcome::latest()->get(),
+            'outcomes' => Outcome::latest('tanggal_outcome')->get(),
             ]);
     }
 
