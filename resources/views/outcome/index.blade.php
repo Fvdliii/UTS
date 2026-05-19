@@ -48,7 +48,7 @@
 
 
                 <a class="btn btn-warning btn-sm" href="{{ route('outcome.edit', $outcome) }}" role="button">Edit</a>
-                <a class="btn btn-info btn-sm" href="{{ route('outcome.show', $income) }}" role="button">Detail</a>
+                <a class="btn btn-info btn-sm" href="{{ route('outcome.show', $outcome) }}" role="button">Detail</a>
 
 
                 <form action="{{ route('outcome.destroy', $outcome) }}" method="POST" class="d-inline">
