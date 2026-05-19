@@ -15,7 +15,7 @@ class IncomeController extends Controller
     {
         return view('income.index', [
             'title' => 'Recorded Income',
-            'incomes' => Income::latest('tanggal_income')->get(),
+            'incomes' => Income::latest('tanggal_income')->paginate(5),
             ]);
     }
 
@@ -63,7 +63,17 @@ class IncomeController extends Controller
      */
     public function show(Income $income)
     {
-        //
+    $totalOutcome = $income->outcomes->sum('nominal');
+
+    $sisa = $income->nominal - $totalOutcome;
+
+    return view('income.show', [
+        'title' => 'Detail Income',
+        'income' => $income,
+        'outcomes' => $income->outcomes,
+        'totalOutcome' => $totalOutcome,
+        'sisa' => $sisa,
+    ]);
     }
 
     /**

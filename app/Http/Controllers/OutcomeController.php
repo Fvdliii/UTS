@@ -13,9 +13,23 @@ class OutcomeController extends Controller
      */
     public function index()
     {
+
+    $outcomes = Outcome::latest('tanggal_outcome');
+    $keyword = request('keyword'); 
+    $incomeId = request('income_id'); 
+    if ($keyword) {
+        $outcomes->where('outcome', 'like', '%' . $keyword . '%')
+                ->orWhere('from', 'like', '%' . $keyword . '%');
+    }
+
+    if ($incomeId) {
+        $outcomes->where('income_id', $incomeId);
+    }
+
         return view('outcome.index', [
             'title' => 'Recorded outcome',
-            'outcomes' => Outcome::latest('tanggal_outcome')->get(),
+            'outcomes' => $outcomes->latest('tanggal_outcome')->paginate(5)->withQueryString(),
+            'incomes' => Income::all(),
             ]);
     }
 
@@ -67,7 +81,10 @@ class OutcomeController extends Controller
      */
     public function show(Outcome $outcome)
     {
-        //
+        return view('outcome.show', [
+        'title' => 'Detail Outcome',
+        'outcome' => $outcome,
+    ]);
     }
 
     /**

@@ -12,6 +12,7 @@ Route::post('/income/store', [IncomeController::class, 'store'])->name('income.s
 Route::get('/income/{income}/edit', [IncomeController::class, 'edit'])->name('income.edit');
 Route::put('/income/{income}', [IncomeController::class, 'update'])->name('income.update');
 Route::delete('/income/{income}', [IncomeController::class, 'destroy'])->name('income.destroy');
+Route::get('/income/{income}', [IncomeController::class, 'show'])->name('income.show');
 
 Route::resource('outcome', OutcomeController::class);
 

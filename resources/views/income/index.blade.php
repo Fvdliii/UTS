@@ -13,13 +13,14 @@
     <ul class="list-group">
         @foreach ($incomes as $income)
             <li class="list-group-item">
-                {{ $loop->iteration }}.
+                {{ $incomes->firstItem() + $loop->index }}.
                 {{ $income->from }} --
                 {{ $income->income }} --
                 Rp {{ number_format($income->nominal, 0, ',', '.') }} --
                 {{ $income->tanggal_income }}
 
                 <a class="btn btn-warning btn-sm" href="{{ route('income.edit', $income) }}" role="button">Edit</a>
+                <a class="btn btn-info btn-sm" href="{{ route('income.show', $income) }}" role="button">Detail</a>
 
                 <form action="{{ route('income.destroy', $income) }}" method="POST" class="d-inline">
                     @method('DELETE')
@@ -34,4 +35,6 @@
             </li>
         @endforeach
     </ul>
+
+    {{ $incomes->links() }}
 </x-app>
