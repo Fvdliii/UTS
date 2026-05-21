@@ -13,10 +13,13 @@ Route::get('/income/{income}/edit', [IncomeController::class, 'edit'])->name('in
 
 Route::get('/income/recycle',[IncomeController::class, 'recycle'])->name('income.recycle');
 Route::post('/income/{id}/restore',[IncomeController::class, 'restore'])->name('income.restore');
+Route::delete('/income/{id}/force-delete',[IncomeController::class, 'forceDelete'])->name('income.forceDelete');
 
 Route::put('/income/{income}', [IncomeController::class, 'update'])->name('income.update');
 Route::delete('/income/{income}', [IncomeController::class, 'destroy'])->name('income.destroy');
 Route::get('/income/{income}', [IncomeController::class, 'show'])->name('income.show');
 
+
 Route::resource('outcome', OutcomeController::class);
+
 

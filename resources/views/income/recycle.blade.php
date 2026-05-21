@@ -4,6 +4,8 @@
 
     <h3 class="mb-3">Recycle Bin</h3>
 
+    <a class="btn btn-primary mb-3" href="{{ route('income.index') }}" role="button">Kembali</a>
+
     <table class="table table-bordered table-hover text-center">
 
         <thead class="table-dark">
@@ -39,10 +41,13 @@
                             </button>
                         </form>
 
-                        <form action="{{ route('income.index', $income->id) }}" method="POST">
+                        <form action="{{ route('income.forceDelete', $income->id) }}" method="POST">
+
                             @csrf
                             @method('DELETE')
-                            <button type="submit" class="btn btn-danger btn-sm">Delete Permanent
+
+                            <button type="submit" class="btn btn-danger btn-sm"
+                                onclick="return confirm('Hapus Permanen data?')"> Hapus Permanen
                             </button>
                         </form>
                     </td>

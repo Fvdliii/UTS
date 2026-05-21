@@ -131,9 +131,16 @@ class IncomeController extends Controller
     }
 
     public function restore($id)
-{
-    Income::withTrashed()->findOrFail($id)->restore();
+    {
+        Income::withTrashed()->findOrFail($id)->restore();
+
+        return to_route('income.recycle');
+    }
+
+    public function forceDelete($id)
+    {
+        Income::withTrashed()->findOrFail($id)->forceDelete();
 
     return to_route('income.recycle');
-}
+    }
 }
