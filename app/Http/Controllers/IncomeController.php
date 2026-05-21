@@ -88,32 +88,28 @@ class IncomeController extends Controller
      * Update the specified resource in storage.
      */
     public function update(Request $request, Income $income)
-    {
-        $validated = $request->validate([
-        'income' => 'required|max:255',
-        'from' => 'required|max:255',
+{
+    $validated = $request->validate([
+        'income' => 'required',
+        'from' => 'required',
         'nominal' => 'required|numeric',
-        'tanggal_income' => 'required|date',
-    ], [
-        'income.required' => 'Tabel harus di isi',
-        'income.max' => 'Income tidak boleh lebih dari :max character',
-        'from.required' => 'Tabel harus di isi',
-        'from.max' => 'From tidak boleh lebih dari :max character',
-        'nominal.required' => 'Nominal harus di isi',
-        'nominal.numeric' => 'Nominal wajib angka',
-        'tanggal_income.required' => 'Tanggal harus di isi',
-
+        'tanggal_income' => 'required',
     ]);
+
+    DB::transaction(function () use ($request, $income) {
 
         $income->update([
-        'income' => $request->income,
-        'from' => $request->from,
-        'nominal' => $request->nominal,
-        'tanggal_income' => $request->tanggal_income,
-    ]);
+            'income' => $request->income,
+            'from' => $request->from,
+            'nominal' => $request->nominal,
+            'tanggal_income' => $request->tanggal_income,
+            'description' => $request->description,
+        ]);
 
-    return to_route('income.index')->withSuccess('Data berhasil Di ubah');
-    }
+    });
+
+    return to_route('income.index');
+}
 
     /**
      * Remove the specified resource from storage.
