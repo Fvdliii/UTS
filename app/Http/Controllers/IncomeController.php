@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Income;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class IncomeController extends Controller
 {
@@ -32,31 +33,27 @@ class IncomeController extends Controller
      * Store a newly created resource in storage.
      */
     public function store(Request $request)
-    {
+{
     $validated = $request->validate([
-        'income' => 'required|max:255',
-        'from' => 'required|max:255',
+        'income' => 'required',
+        'from' => 'required',
         'nominal' => 'required|numeric',
-        'tanggal_income' => 'required|date',
-    ], [
-        'income.required' => 'Tabel harus di isi',
-        'income.max' => 'Income tidak boleh lebih dari :max character',
-        'from.required' => 'Tabel harus di isi',
-        'from.max' => 'From tidak boleh lebih dari :max character',
-        'nominal.required' => 'Nominal harus di isi',
-        'nominal.numeric' => 'Nominal wajib angka',
-        'tanggal_income.required' => 'Tanggal harus di isi',
-
+        'tanggal_income' => 'required',
     ]);
+
+    DB::transaction(function () use ($request) {
 
         Income::create([
-        'income' => $request->income,
-        'from' => $request->from,
-        'nominal' => $request->nominal,
-        'tanggal_income' => $request->tanggal_income,
-    ]);
-        return to_route('income.index')->withSuccess('Data berhasil ditambahkan');
-    }
+            'income' => $request->income,
+            'from' => $request->from,
+            'nominal' => $request->nominal,
+            'tanggal_income' => $request->tanggal_income,
+        ]);
+
+    });
+
+    return to_route('income.index');
+}
 
     /**
      * Display the specified resource.
