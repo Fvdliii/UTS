@@ -12,9 +12,9 @@
 
     <div class="table-responsive">
 
-        <table class="table table-striped table-bordered mt-3">
+        <table class="table table-hover table-striped align-middle mb-0 text-center">
 
-            <thead>
+            <thead class="table-dark">
                 <tr>
                     <th>No</th>
                     <th>From</th>

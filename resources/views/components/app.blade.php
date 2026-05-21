@@ -12,7 +12,7 @@
 <body>
     {{-- Nav --}}
 
-    <nav class="navbar navbar-expand-lg bg-body-tertiary">
+    <nav class="navbar navbar-dark bg-dark navbar-expand-lg">
         <div class="container-fluid">
             <a class="navbar-brand" href="#">Money Saver</a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup"
@@ -20,7 +20,7 @@
                 <span class="navbar-toggler-icon"></span>
             </button>
             <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
-                <div class="navbar-nav">
+                <div class="navbar-nav ms-auto">
                     <a class="nav-link active" href="{{ route('income.index') }}">Income</a>
                     <a class="nav-link active" href="{{ route('outcome.index') }}">outcome</a>
                 </div>
@@ -30,8 +30,9 @@
 
     {{-- Judul --}}
 
-    <div class="bg-primary py-5 text-center text-white">
+    <div class="py-5 text-center text-white" style="background: linear-gradient(135deg, #0d6efd, #6610f2);">
         <h1 class="fw-bold">{{ $title }}</h1>
+        <p class="mb-0 opacity-75">Kelola pemasukan dan pengeluaran dengan mudah</p>
     </div>
 
     {{-- Main app --}}

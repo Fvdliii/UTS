@@ -28,7 +28,7 @@ class OutcomeController extends Controller
 
         return view('outcome.index', [
             'title' => 'Recorded outcome',
-            'outcomes' => $outcomes->latest('tanggal_outcome')->paginate(5)->withQueryString(),
+            'outcomes' => $outcomes->latest()->paginate(5)->withQueryString(),
             'incomes' => Income::all(),
             ]);
     }
