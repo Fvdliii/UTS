@@ -39,7 +39,7 @@
                             </button>
                         </form>
 
-                        <form action="{{ route('income.forceDelete', $income->id) }}" method="POST">
+                        <form action="{{ route('income.index', $income->id) }}" method="POST">
                             @csrf
                             @method('DELETE')
                             <button type="submit" class="btn btn-danger btn-sm">Delete Permanent
