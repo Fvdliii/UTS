@@ -22,6 +22,7 @@
             <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
                 <div class="navbar-nav ms-auto">
                     <a class="nav-link active" href="{{ route('income.index') }}">Income</a>
+                    <a class="nav-link active" href="{{ route('income.recycle') }}">Recycle</a>
                     <a class="nav-link active" href="{{ route('outcome.index') }}">outcome</a>
                 </div>
             </div>

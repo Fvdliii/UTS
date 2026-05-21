@@ -127,4 +127,13 @@ class IncomeController extends Controller
 
     return to_route('income.index')->withSuccess('Data berhasil Di hapus');
     }
+
+    public function recycle()
+    {
+    return view('income.recycle', [
+        'title' => 'Recycle Bin',
+        'incomes' => Income::onlyTrashed()->latest()->paginate(5)
+
+    ]);
+    }
 }
